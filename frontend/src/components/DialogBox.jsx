@@ -6,7 +6,7 @@ import {
   DialogTitle,
   TextField,
   MenuItem,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import Button from "./Button";
 

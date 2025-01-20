@@ -2,14 +2,14 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-function About() {
+function Gallery() {
   return (
     <>
       <Header />
-      About
+      <div className="overflow-x-hidden">Gallery</div>
       <Footer />
     </>
   );
 }
 
-export default About;
+export default Gallery;

@@ -5,10 +5,10 @@ import "aos/dist/aos.css";
 const Footer = () => {
   useEffect(() => {
     Aos.init({
-      duration: 1000, // Animation duration
-      offset: 200, // Global offset for all animations
-      once: false, // Should the animation occur only once
-      mirror: true, // Allows animations on scroll back up });
+      duration: 1000, 
+      offset: 200, 
+      once: false,
+      mirror: true,
     });
   }, []);
 

@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import logo from "../assests/logo.png";
-import { Link, useLocation } from "react-router-dom";
+import logo from "../assests/Wisdomhub Academy Logo.png";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import DialogBox from "./DialogBox";
 
 function Header() {
   const [open, setOpen] = useState(false);
   const [dialog, setdialog] = useState(false);
   const location = useLocation();
+  const navigation = useNavigate();
+
+  const handleNavigation = () => {
+    navigation("/");
+    setTimeout(() => {
+      const aboutSection = document.getElementById("about-section");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
 
   return (
     <>
-      <div className="fixed w-full z-50">
+      <div className=" w-full z-50">
         <div
           className="mx-auto py-4 px-6 lg:px-10 backdrop-blur-md transition-all duration-300 ease-in-out"
           style={{
@@ -20,7 +31,11 @@ function Header() {
         >
           <div className="hidden md:flex items-center justify-between">
             <div className="flex items-center">
-              <img className="hover:cursor-pointer" src={logo} alt="Logo" />
+              <img
+                className="hover:cursor-pointer w-full h-20"
+                src={logo}
+                alt="Logo"
+              />
             </div>
             <ul className="flex space-x-8">
               <li
@@ -34,12 +49,12 @@ function Header() {
               </li>
               <li
                 className={`text-2xl font-medium font-serif ${
-                  location.pathname === "/Schedule"
+                  location.pathname === "/Gallery"
                     ? "text-blue-400"
                     : "hover:text-blue-400"
                 } transition duration-200`}
               >
-                <Link to="/Schedule">Schedule</Link>
+                <Link to="/Gallery">Gallery</Link>
               </li>
               <li
                 className={`text-2xl font-medium font-serif ${
@@ -48,10 +63,10 @@ function Header() {
                     : "hover:text-blue-400"
                 } transition duration-200`}
               >
-                <Link to="/About">About</Link>
+                <a onClick={handleNavigation}>About</a>
               </li>
               <li className="text-2xl font-medium font-serif hover:text-blue-400 transition duration-200">
-                <a href="#" onClick={() => setdialog(true)}>
+                <a className="hover:cursor-pointer" onClick={() => navigation("/Payment")}>
                   Book a Demo
                 </a>
               </li>
@@ -61,7 +76,7 @@ function Header() {
           <div className="flex md:hidden items-center justify-between w-full h-20">
             <div className="flex justify-center w-full">
               <img
-                className="hover:cursor-pointer w-64 h-20"
+                className="hover:cursor-pointer w-40 h-14"
                 src={logo}
                 alt="Logo"
               />
@@ -82,7 +97,7 @@ function Header() {
         className={`fixed top-0 right-0 h-full w-64 bg-blue-500 text-white shadow-lg transform transition-transform duration-300 z-50 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ background: "#1a202c" }} 
+        style={{ background: "#1a202c" }}
       >
         <div className="p-4 flex justify-between items-center border-b border-gray-700">
           <h2 className="text-xl font-semibold">Menu</h2>
@@ -109,8 +124,8 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to="/Schedule" className="hover:text-blue-400">
-              Schedule
+            <Link to="/Gallery" className="hover:text-blue-400">
+              Gallery
             </Link>
           </li>
           <li>
@@ -122,8 +137,7 @@ function Header() {
             <a
               href="#"
               className="hover:text-blue-400"
-              onClick={() => setdialog(!dialog)}
-            >
+              onClick={() => navigation("/Payment")}            >
               Book a Demo
             </a>
           </li>
